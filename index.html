@@ -1,1 +1,180 @@
-hello world
+<html>
+<head>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/coffee-script.js"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+	<title>רועי ברלין</title>
+  <style>
+    html, body, div, p, span, a, h2 {
+      text-align: center;
+      direction: rtl;
+    }
+    .container {
+      margin: 0 auto;
+      width: 340px;
+    }
+    img.mim {
+      border-radius: 25px;
+      width: 340px;
+      margin-top: 10px;
+    }
+    h2 {
+      margin: 7px 0;
+    }
+    .q {
+      color: #444;
+      display: none;
+    }
+    .q span {
+      color: #666;
+      font-size: 12px;
+    }
+    .const { 
+      top: 0;
+      position: fixed;
+    }
+    .candle {
+      width: 30px;
+      margin-top: 10px;
+    }
+    section {
+      margin-top: 10px;
+      background: url('images/sky.jpg');
+      border-radius: 25px;
+      /*opacity: 0.9;*/
+      width: 340px;
+    }
+    article {
+      display: none;
+      color: white;
+      /*border: 1px solid red;*/
+      padding: 0 10px;
+      text-shadow: black 0.2em 0.2em 0.2em;
+      padding-bottom: 10px;
+      font-size: 13px;
+    }
+    section article header {
+      padding-top: 15px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    audio { display: none;}
+  </style>
+  <script type="text/coffeescript">
+    choof = ->
+      setTimeout ->
+        $('.mim').fadeOut ->
+          $(@).attr
+            src: "gallery/#{Math.round((Math.random()*100))%42 + 1}.jpg"
+          .fadeIn choof
+      , 10015
+
+
+    $ ->
+      $('#about_box').click ->
+        document.about_opened = false
+        $('#about_box').fadeOut ->
+          $('.mim_w').fadeIn()
+
+      $('#about_link').click ->
+        if document.about_opened
+          document.about_opened = false
+          $('#about_box').fadeOut ->
+            $('.mim_w').fadeIn()
+        else
+          document.about_opened = true
+          $('.mim_w').fadeOut ->
+            $('#about_box').fadeIn()
+
+      $('a').popover()
+      $('.mim').ready ->
+        $('h2').fadeIn()
+        $('.q').fadeIn()
+        choof()
+
+
+  </script>
+</head>
+<body>
+  <div class="container">
+    <p>
+      <br/>
+      <div style="position: relative"> 
+        <video autoplay="autoplay">
+          <source src="av/candle.mp4" type="video/mp4" />
+          <!-- <source src="movie.ogg" type="video/ogg" /> -->
+          Your browser does not support the video tag.
+        </video>
+        <div style="position: absolute; left: 160px; top:50px; background-color: ; width: 30px; height: 10px"></div>
+      </div>
+      <!-- <img src="images/animatedcandle.gif" class="candle" /> -->
+      <h2>
+        רועי ברלין
+      </h2>
+      <div class="q">
+        "רק דרך הלב תוכל לגעת בשמיים" <span>רומי</span>
+      </div>
+    </p>
+
+    <a href="#" id="about_link">על אודות</a> |
+    <a href="http://benyehuda.org/reckendorf/" target="_blank" rel="tooltip" data-placement="right" title="הקוראן" data-content="רועי החל במלאכת הקלדת הקוראן לפי תרגומו של הרמן רקנדורף לטובת שוחרי האיסלאם בארץ.<br/>את מלאכתו סיימו חברי פרויקט בן-יהודה.">הקוראן</a> |
+
+    <a href="http://hadkeren.co.il/?portfolio=%D7%A8%D7%99%D7%A7%D7%95%D7%93-%D7%94%D7%90%D7%94%D7%91%D7%94-%D7%9C%D7%90%D7%9C%D7%95%D7%94%D7%99%D7%9D-%D7%92%D7%9C%D7%90%D7%9C-%D7%90-%D7%93%D7%99%D7%9F-%D7%A8%D7%95%D7%9E%D7%99-%D7%91%D7%A7" target="_blank" rel="tooltip" title="ריקוד האהבה לאלוהים" data-placement="bottom" data-content="רועי אהב את כתביו של המורה הסופי הגדול, רומי. כדי להמשיך את דרכו של רועי, בחרנו להוציא לאור בעברית ספר יחודי הכולל מדרשותיו של רומי, &quot;ריקוד האהבה לאלוהים&quot; בהוצאת חד-קרן.">ריקוד האהבה לאלוהים</a> |
+
+    <a href="http://aka.dorkalev.com/2010/06/blog-post_9554.html" target="_blank" rel="tooltip" data-placement="left" title="השלמה" data-content="קטע שכתב דור כלב במלאת שנה ללכתו של רועי">השלמה</a> 
+
+    <div class="mim_w">
+      <img src="gallery/11.jpg" class="mim" />
+    </div>
+    <section>
+      <article id="about_box">
+        <header>אודות רועי</header>
+        <p>
+          רועי נולד בבית-עובד ב-1981 והתחנך בבית-הספר היסודי בעיינות ובתיכון בקיבוץ גבעת-ברנר.
+        </p>
+        <p>
+          היה הצופה הנלהב ביותר של הסימפסונים ואוהד מושבע של הפועל תל-אביב.
+        </p>
+        <p>
+          רועי הצטיין מנעוריו בשפות ונמשך במיוחד לשפה הערבית ולעולם האיסלם.
+        </p>
+        <p>
+          רועי שירת בתותחנים ומצא בית חם בצה"ל בסדיר ובמילואים.
+        </p>
+        <p>
+          גר בירושליים ולמד באוניברסיטה העברית במחלקה לאיסלאם.
+        </p>
+        <p>
+          בשנותיו האחרונות סבל נפשית, לבסוף שם קץ לחייו.
+        </p>
+        <p>
+          רועי אהב את החיים מאד. תעיד על-כך תשוקתו הגדולה לחיים&nbsp;- הלימודים באקדמיה, תאוות המחקר, האהבה לשפות, הספורט, האהבה לאנשים, לעשיית ספורט ולצפייה בכדורגל.
+        </p>
+<!--         <p>
+          רועי הקדיש את חייו כדי לעזור לאחרים. הוא האמין שהמחקר הארוך שעשה יוכל לעזור ולצמצם את האלימות והבורות האנושית. האו האמין שאם יותר אנשים ידעו שהמילה לאח בפרסית, ברדר דומה לאח באנגלית - העולם יהיה מקום טוב יותר.
+        </p>
+ -->        <p>
+        </p>
+        <p>
+        </p>
+      </article>
+    </section>
+    <audio controls="controls" autoplay="autoplay" loop="loop">
+      <source src="av/sea4.m4a" type="audio/mpeg" />
+    </audio>
+  </div>
+</body>
+</html>
