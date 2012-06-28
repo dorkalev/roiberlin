@@ -65,6 +65,13 @@
       padding-bottom: 10px;
       font-size: 13px;
     }
+    article a {
+      color: white;
+      text-decoration: underline
+    }
+    article a:hover {
+      text-shadow: none;
+    }
     section article header {
       padding-top: 15px;
       font-weight: bold;
@@ -72,6 +79,12 @@
       margin-bottom: 20px;
     }
     audio { display: none;}
+    .about_link {
+      cursor: pointer;
+    }
+    .menu {
+      color: lightgrey;
+    }
   </style>
   <script type="text/coffeescript">
     choof = ->
@@ -84,12 +97,7 @@
 
 
     $ ->
-      $('#about_box').click ->
-        document.about_opened = false
-        $('#about_box').fadeOut ->
-          $('.mim_w').fadeIn()
-
-      $('#about_link').click ->
+      $('.about_link').bind 'click', ->
         if document.about_opened
           document.about_opened = false
           $('#about_box').fadeOut ->
@@ -98,6 +106,11 @@
           document.about_opened = true
           $('.mim_w').fadeOut ->
             $('#about_box').fadeIn()
+
+      $('#about_box').click ->
+        document.about_opened = false
+        $('#about_box').fadeOut ->
+          $('.mim_w').fadeIn()
 
       $('a').popover()
       $('.mim').ready ->
@@ -112,7 +125,7 @@
   <div class="container">
     <p>
       <br/>
-      <div style="position: relative"> 
+      <div style="position: relative" class="about_link"> 
         <video autoplay="autoplay" loop="loop">
           <source src="av/candle.mp4" type="video/mp4" />
           <!-- <source src="movie.ogg" type="video/ogg" /> -->
@@ -121,21 +134,22 @@
         <!-- <div style="position: absolute; left: 160px; top:50px; background-color: ; width: 30px; height: 10px"></div> -->
       </div>
       <!-- <img src="images/animatedcandle.gif" class="candle" /> -->
-      <h2>
+      <h2 class="about_link">
         רועי ברלין
       </h2>
       <div class="q">
         "רק דרך הלב תוכל לגעת בשמיים" <span>רומי</span>
       </div>
     </p>
+    <div class="menu">
+      <a href="#" class="about_link">על אודות</a> |
+      <a href="http://grooveshark.com/#!/playlist/Roi+Berlin/74934061" target="_blank" rel="tooltip" data-placement="right" title="הפלייליסט" data-content="הרכבנו רשימה של שירים שרועי אהב, תוכלו לשמוע אותם דרך אתר grooveshark. נודה לכל מי שמכיר ורוצה לתרום שיר נוסף לארסנל.">הפלייליסט</a> |
+      <a href="http://benyehuda.org/reckendorf/" target="_blank" rel="tooltip" data-placement="right" title="הקוראן" data-content="רועי החל במלאכת הקלדת הקוראן לפי תרגומו של הרמן רקנדורף לטובת שוחרי האיסלאם בארץ.<br/>את מלאכתו סיימו חברי פרויקט בן-יהודה.">הקוראן</a> |
 
-    <a href="#" id="about_link">על אודות</a> |
-    <a href="http://benyehuda.org/reckendorf/" target="_blank" rel="tooltip" data-placement="right" title="הקוראן" data-content="רועי החל במלאכת הקלדת הקוראן לפי תרגומו של הרמן רקנדורף לטובת שוחרי האיסלאם בארץ.<br/>את מלאכתו סיימו חברי פרויקט בן-יהודה.">הקוראן</a> |
+      <a href="http://hadkeren.co.il/?portfolio=%D7%A8%D7%99%D7%A7%D7%95%D7%93-%D7%94%D7%90%D7%94%D7%91%D7%94-%D7%9C%D7%90%D7%9C%D7%95%D7%94%D7%99%D7%9D-%D7%92%D7%9C%D7%90%D7%9C-%D7%90-%D7%93%D7%99%D7%9F-%D7%A8%D7%95%D7%9E%D7%99-%D7%91%D7%A7" target="_blank" rel="tooltip" title="ריקוד האהבה לאלוהים" data-placement="left" data-content="רועי אהב את כתביו של המורה הסופי הגדול, רומי. כדי להמשיך את דרכו של רועי, בחרנו להוציא לאור בעברית ספר יחודי הכולל מדרשותיו של רומי, &quot;ריקוד האהבה לאלוהים&quot; בהוצאת חד-קרן.">ריקוד האהבה לאלוהים</a> |
 
-    <a href="http://hadkeren.co.il/?portfolio=%D7%A8%D7%99%D7%A7%D7%95%D7%93-%D7%94%D7%90%D7%94%D7%91%D7%94-%D7%9C%D7%90%D7%9C%D7%95%D7%94%D7%99%D7%9D-%D7%92%D7%9C%D7%90%D7%9C-%D7%90-%D7%93%D7%99%D7%9F-%D7%A8%D7%95%D7%9E%D7%99-%D7%91%D7%A7" target="_blank" rel="tooltip" title="ריקוד האהבה לאלוהים" data-placement="bottom" data-content="רועי אהב את כתביו של המורה הסופי הגדול, רומי. כדי להמשיך את דרכו של רועי, בחרנו להוציא לאור בעברית ספר יחודי הכולל מדרשותיו של רומי, &quot;ריקוד האהבה לאלוהים&quot; בהוצאת חד-קרן.">ריקוד האהבה לאלוהים</a> |
-
-    <a href="http://aka.dorkalev.com/2010/06/blog-post_9554.html" target="_blank" rel="tooltip" data-placement="left" title="השלמה" data-content="קטע שכתב דור כלב במלאת שנה ללכתו של רועי">השלמה</a> 
-
+      <a href="http://aka.dorkalev.com/2010/06/blog-post_9554.html" target="_blank" rel="tooltip" data-placement="left" title="השלמה" data-content="קטע שכתב דור כלב במלאת שנה ללכתו של רועי">השלמה</a> 
+    </div>
     <div class="mim_w">
       <img src="gallery/11.jpg" class="mim" />
     </div>
@@ -163,12 +177,8 @@
         <p>
           רועי אהב את החיים מאד. תעיד על-כך תשוקתו הגדולה לחיים&nbsp;- הלימודים באקדמיה, תאוות המחקר, האהבה לשפות, הספורט, האהבה לאנשים, לעשיית ספורט ולצפייה בכדורגל.
         </p>
-<!--         <p>
-          רועי הקדיש את חייו כדי לעזור לאחרים. הוא האמין שהמחקר הארוך שעשה יוכל לעזור ולצמצם את האלימות והבורות האנושית. האו האמין שאם יותר אנשים ידעו שהמילה לאח בפרסית, ברדר דומה לאח באנגלית - העולם יהיה מקום טוב יותר.
-        </p>
- -->        <p>
-        </p>
         <p>
+          <a href="mailto:dor+roisite@dorkalev.com">&#9993; לצוות האתר</a>
         </p>
       </article>
     </section>
