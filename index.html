@@ -92,7 +92,7 @@
       setTimeout ->
         unless top.location.hash == '#אודות'
           $('.mim').fadeOut ->
-            top.location.hash = "##{Math.round((Math.random()*100))%42 + 1}"
+            top.location.hash = "##{Math.round((Math.random()*100))%41 + 1}"
             $(@).attr
               src: "gallery/#{top.location.hash?.substr(1) | 1}.jpg"
             .fadeIn choof
