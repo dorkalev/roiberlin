@@ -90,30 +90,36 @@
   <script type="text/coffeescript">
     choof = ->
       setTimeout ->
-        $('.mim').fadeOut ->
-          $(@).attr
-            src: "gallery/#{Math.round((Math.random()*100))%42 + 1}.jpg"
-          .fadeIn choof
+        unless top.location.hash == '#אודות'
+          $('.mim').fadeOut ->
+            top.location.hash = "##{Math.round((Math.random()*100))%42 + 1}"
+            $(@).attr
+              src: "gallery/#{top.location.hash?.substr(1) | 1}.jpg"
+            .fadeIn choof
       , 10015
 
 
     $ ->
       $('.about_link').bind 'click', ->
-        if document.about_opened
-          document.about_opened = false
+        if top.location.hash == '#אודות'
+          top.location.hash = "#"
           $('#about_box').fadeOut ->
             $('.mim_w').fadeIn()
         else
-          document.about_opened = true
+          top.location.hash = "#אודות"
           $('.mim_w').fadeOut ->
             $('#about_box').fadeIn()
 
-      $('#about_box').click ->
-        document.about_opened = false
-        $('#about_box').fadeOut ->
-          $('.mim_w').fadeIn()
 
       $('a').popover()
+      if (top.location.hash?.substr 1)*1 > 0
+        $('.mim').attr
+          src: "gallery/#{top.location.hash?.substr 1}.jpg"
+      else
+        if top.location.hash == '#אודות'
+          $('.mim_w').hide()
+          $('#about_box').show()
+
       $('.mim').ready ->
         $('h2').fadeIn()
         $('.q').fadeIn()
@@ -155,7 +161,7 @@
       <img src="gallery/11.jpg" class="mim" />
     </div>
     <section>
-      <article id="about_box">
+      <article id="about_box" class="about_link">
         <header>אודות רועי</header>
         <p>
           רועי נולד בבית-עובד ב-1981 והתחנך בבית-הספר היסודי בעיינות ובתיכון בקיבוץ גבעת-ברנר.
