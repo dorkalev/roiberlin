@@ -17,6 +17,11 @@ img.mim {
   border-radius: 25px;
   width: 340px;
   margin-top: 10px;
+  transform:         rotate(0.2deg);
+  -ms-transform:     rotate(0.2deg); /* IE 9 */
+  -moz-transform:    rotate(0.2deg); /* Firefox */
+  -webkit-transform: rotate(0.2deg); /* Safari and Chrome */
+  -o-transform:      rotate(0.2deg); /* Opera */
   box-shadow: 2px 2px 2px #888;
 }
 
@@ -65,16 +70,12 @@ h2 {
 }
 section {
   margin-top: 10px;
-  /*background: url('../images/sky.jpg');*/
   border-radius: 25px;
-  /*opacity: 0.9;*/
   width: 340px;
 }
 article {
   display: none;
   color: black;
-/*      color: white;
-*/      /*border: 1px solid red;*/
   padding: 0 10px;
   text-shadow: white 0.2em 0.2em 0.2em;
   padding-bottom: 10px;
@@ -115,7 +116,15 @@ audio { display: none;}
   border-radius: 20px;
   margin: 5px;
   box-shadow: 2px 2px 2px #888;
+}
 
+#gallery_box .one {
+  display: inline-block;
+  transform:         rotate(1deg);
+  -ms-transform:     rotate(1deg); /* IE 9 */
+  -moz-transform:    rotate(1deg); /* Firefox */
+  -webkit-transform: rotate(1deg); /* Safari and Chrome */
+  -o-transform:      rotate(1deg); /* Opera */
 }
 
 #gallery_box img:hover {

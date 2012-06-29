@@ -49,7 +49,7 @@
             opacity: if (op = (0.6 - calculateDistance($element, e.pageX, e.pageY) / 500)) < 0 then 0 else op
     
     setupGallery = ->
-      $('#gallery_box').append $("<img src='gallery/#{id}.jpg' data-img-id='#{id}' title='#{id}'>") for id in [1..38]
+      $('#gallery_box').append $("<div class='one'><img src='gallery/#{id}.jpg' data-img-id='#{id}' title='#{id}'></div>") for id in [1..38]
     
     router = ->
       if top.location.hash == '#about'
@@ -129,7 +129,7 @@
     <section>
       <article id="gallery_box"></article>
       <article id="about_box" class="about_link">
-        <header>אודות רועי</header>
+        <!-- <header>אודות רועי</header> -->
         <p>
           רועי נולד בבית-עובד ב-1981 והתחנך בבית-הספר היסודי בעיינות ובתיכון בקיבוץ גבעת-ברנר.
         </p>
