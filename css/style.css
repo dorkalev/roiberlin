@@ -4,7 +4,7 @@ html, body, div, p, span, a, h2 {
 }
 
 body {  
-  background-color: rgb(243,243,255);
+  background-color: rgb(255,250,240);
 }
 .container {
   margin: 0 auto;
@@ -52,21 +52,16 @@ img.mim:hover {
 h2 {
   margin: 7px 0;
 }
-.q {
+.rumi_quote {
   color: #444;
   display: none;
 }
-.q span {
+.rumi_quote span {
   color: #666;
   font-size: 12px;
 }
-.const { 
-  top: 0;
-  position: fixed;
-}
 .candle {
-  width: 30px;
-  margin-top: 10px;
+  height: 60px;
 }
 section {
   margin-top: 10px;
@@ -100,6 +95,7 @@ audio { display: none;}
 }
 .menu {
   color: lightgrey;
+  display: none;
 }
 #volumer {
   position: fixed;

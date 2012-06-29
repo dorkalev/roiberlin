@@ -78,8 +78,8 @@
       window.onhashchange = router
 
       setInterval showRandomImage, 10100
-
-      
+      $('.rumi_quote').slideDown 300, ->
+        $('.menu').slideDown 300
       $('.goSlide').on 'click', ->
         top.location.hash = ''
         showRandomImage()
@@ -105,12 +105,12 @@
     <div id="volumer" data-level="3"></div>  
     <p>
       <br/>
-      <img src="av/anim2.gif" class="about_link" />
+      <img src="av/anim2.gif" class="about_link candle" />
       <h2 class="about_link">
         רועי ברלין
       </h2>
-      <div class="q">
-        "רק דרך הלב תוכל לגעת בשמיים" <span>רומי</span>
+      <div class="rumi_quote">
+        "רק מתוך הלב תוכל לגעת בשמיים" <span>רומי</span>
       </div>
     </p>
     <div class="menu">
