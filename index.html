@@ -21,15 +21,15 @@
     showImage = ->
       $('.mim').fadeOut ->
         $(@).attr
-          src: "gallery/#{top.location.hash?.substr(1) | 11}.jpg"
-        .fadeIn slideShow
-
+          src: "gallery/#{top.location.hash?.substr(1)}.jpg"
+        .fadeIn()
     slideShow = ->
       setTimeout ->
-        if (top.location.hash?.substr(1)*1) > 0
-          top.location.hash = "##{Math.round((Math.random()*100))%37 + 1}"
+        if (top.location.hash = '#') || (top.location.hash?.substr(1)*1) > 0
+          top.location.hash = "##{Math.round(Math.random()*100)%37 + 1}"
           showImage()
-      ,10015
+        slideShow()
+      , 10015
 
     volumeClick = ->
       level = $('#volumer').attr('data-level') * 1 - 1
@@ -46,13 +46,8 @@
           Math.floor Math.sqrt(Math.pow(mouseX - (elem.offset().left + (elem.width() / 2)), 2) + Math.pow(mouseY - (elem.offset().top + (elem.height() / 2)), 2))
         $element = $("#volumer")
         $(document).mousemove (e) ->
-          mX = e.pageX
-          mY = e.pageY
-          op = (0.6 - calculateDistance($element, mX, mY) / 500)
-          if op < 0
-            op = 0
           $("#volumer").css
-            opacity: op
+            opacity: if (op = (0.6 - calculateDistance($element, e.pageX, e.pageY) / 500)) < 0 then 0 else op
     
     setupGallery = ->
       $('#gallery_box').append $("<img src='gallery/#{id}.jpg' data-img-id='#{id}' title='#{id}'>") for id in [1..38]
@@ -62,17 +57,18 @@
         $('.mim_w').fadeOut ->
           $('#about_box').fadeIn()
       else if top.location.hash == '#gallery'
-        $('.mim_w, section article').fadeOut ->
+        $('.mim_w, section article').slideUp 'slow', ->
           $('#gallery_box').fadeIn()
-      else
-        slideShow()
-        $('section article').fadeOut ->
-          $('.mim_w').fadeIn()
+      else if (top.location.hash?.substr(1)*1) > 0
+        showImage()
+        $('section article').slideUp 'slow', ->
+          $('.mim_w').slideDown()
 
     $ ->
       router()
       volumeOpacityEffect()
       setupGallery()
+      slideShow()
 
       window.onhashchange = router
 

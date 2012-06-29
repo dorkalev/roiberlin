@@ -15,7 +15,7 @@ img.mim {
 
 img.mim:hover {
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.95;
 }
 
 h2 {
@@ -93,7 +93,6 @@ audio { display: none;}
 }
 
 #gallery_box img:hover {
-  opacity: 0.8;
+  opacity: 0.95;
   cursor: pointer;
-
 }
