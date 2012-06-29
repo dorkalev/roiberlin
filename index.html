@@ -23,12 +23,10 @@
         $(@).attr
           src: "gallery/#{id}.jpg"
         .fadeIn()
-    slideShow = ->
-      setTimeout ->
-        if (top.location.hash == '')  #|| (top.location.hash?.substr(1)*1) > 0
-          showImage "#{Math.round(Math.random()*100)%37 + 1}"
-        slideShow()
-      , 10100
+
+    showRandomImage = ->
+      showImage (Math.round(Math.random()*100)%37 + 1) if top.location.hash == ''
+
 
     volumeClick = ->
       level = $('#volumer').attr('data-level') * 1 - 1
@@ -75,20 +73,23 @@
       router()
       volumeOpacityEffect()
       setupGallery()
-      slideShow()
-
       window.onhashchange = router
+
+      setInterval showRandomImage, 10100
+
+      
       $('.goSlide').on 'click', ->
-        top.location.hash = '#'
-      $('#volumer').bind 'click', volumeClick
+        top.location.hash = ''
+        showRandomImage()
+
+      $('#volumer').on 'click', volumeClick
       $('#gallery_box').on 'click', 'img', ->
         top.location.hash = "##{$(@).attr('data-img-id')}"
-      $('.about_link').bind 'click', -> top.location.hash = (if top.location.hash is "#about" then "" else "#about")
+      $('.about_link').on 'click', -> top.location.hash = (if top.location.hash is "#about" then "" else "#about")
 
       $('[rel=popover]').popover()
       $('[rel=tooltip]').tooltip()
-      $('.mim').bind 'click', ->
-        top.location.hash = '#gallery'
+      $('.mim').on 'click', -> top.location.hash = '#gallery'
       $('h2').fadeIn()
 
   </script>
