@@ -1,0 +1,77 @@
+html, body, div, p, span, a, h2 {
+  text-align: center;
+  direction: rtl;
+}
+.container {
+  margin: 0 auto;
+  width: 340px;
+}
+img.mim {
+  border-radius: 25px;
+  width: 340px;
+  margin-top: 10px;
+}
+h2 {
+  margin: 7px 0;
+}
+.q {
+  color: #444;
+  display: none;
+}
+.q span {
+  color: #666;
+  font-size: 12px;
+}
+.const { 
+  top: 0;
+  position: fixed;
+}
+.candle {
+  width: 30px;
+  margin-top: 10px;
+}
+section {
+  margin-top: 10px;
+  background: url('../images/sky.jpg');
+  border-radius: 25px;
+  /*opacity: 0.9;*/
+  width: 340px;
+}
+article {
+  display: none;
+  color: black;
+/*      color: white;
+*/      /*border: 1px solid red;*/
+  padding: 0 10px;
+  text-shadow: white 0.2em 0.2em 0.2em;
+  padding-bottom: 10px;
+  font-size: 13px;
+}
+article a {
+  color: black;
+  text-decoration: underline
+}
+article a:hover {
+  text-shadow: none;
+}
+section article header {
+  padding-top: 15px;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+audio { display: none;}
+.about_link {
+  cursor: pointer;
+}
+.menu {
+  color: lightgrey;
+}
+#volumer {
+  position: fixed;
+  left:0;
+  top:0;
+  background: url('../images/media-volume-3.png');
+  width: 128px;
+  height: 128px;
+}

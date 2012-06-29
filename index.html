@@ -7,8 +7,8 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script src="bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
   <script type="text/javascript" src="js/coffee-script.js"></script>
 
   <meta charset="utf-8" />
@@ -16,77 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 	<title>רועי ברלין</title>
-  <style>
-    html, body, div, p, span, a, h2 {
-      text-align: center;
-      direction: rtl;
-    }
-    .container {
-      margin: 0 auto;
-      width: 340px;
-    }
-    img.mim {
-      border-radius: 25px;
-      width: 340px;
-      margin-top: 10px;
-    }
-    h2 {
-      margin: 7px 0;
-    }
-    .q {
-      color: #444;
-      display: none;
-    }
-    .q span {
-      color: #666;
-      font-size: 12px;
-    }
-    .const { 
-      top: 0;
-      position: fixed;
-    }
-    .candle {
-      width: 30px;
-      margin-top: 10px;
-    }
-    section {
-      margin-top: 10px;
-      background: url('images/sky.jpg');
-      border-radius: 25px;
-      /*opacity: 0.9;*/
-      width: 340px;
-    }
-    article {
-      display: none;
-      color: black;
-/*      color: white;
-*/      /*border: 1px solid red;*/
-      padding: 0 10px;
-      text-shadow: white 0.2em 0.2em 0.2em;
-      padding-bottom: 10px;
-      font-size: 13px;
-    }
-    article a {
-      color: black;
-      text-decoration: underline
-    }
-    article a:hover {
-      text-shadow: none;
-    }
-    section article header {
-      padding-top: 15px;
-      font-weight: bold;
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-    audio { display: none;}
-    .about_link {
-      cursor: pointer;
-    }
-    .menu {
-      color: lightgrey;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
   <script type="text/coffeescript">
     choof = ->
       setTimeout ->
@@ -98,8 +28,42 @@
             .fadeIn choof
       , 10015
 
-
     $ ->
+      $("#volumer").fadeOut 1000, -> 
+        $("#volumer").css 'opacity', '0'
+        $("#volumer").show()
+        calculateDistance = (elem, mouseX, mouseY) ->
+          Math.floor Math.sqrt(Math.pow(mouseX - (elem.offset().left + (elem.width() / 2)), 2) + Math.pow(mouseY - (elem.offset().top + (elem.height() / 2)), 2))
+        $element = $("#volumer")
+        $(document).mousemove (e) ->
+          mX = e.pageX
+          mY = e.pageY
+          op = (0.6 - calculateDistance($element, mX, mY) / 500)
+          if op < 0
+            op = 0
+          $("#volumer").css
+            opacity: op
+      $('#volumer').bind 'click', ->
+        if $('#volumer').attr('data-level') == '3'
+          $('#moo')[0].volume = 0.7
+          $('#volumer').attr 'data-level', '2'
+          $('#volumer').css 'background', "url('images/media-volume-2.png')"
+        else if $('#volumer').attr('data-level') == '2'
+          $('#moo')[0].volume = 0.5
+          $('#volumer').attr 'data-level', '1'
+          $('#volumer').css 'background', "url('images/media-volume-1.png')"
+
+        else if $('#volumer').attr('data-level') == '1'
+          $('#moo')[0].volume = 0
+          $('#volumer').attr 'data-level', '0'
+          $('#volumer').css 'background', "url('images/media-volume-0.png')"
+
+        else if $('#volumer').attr('data-level') == '0'
+          $('#moo')[0].volume = 1
+          $('#volumer').attr 'data-level', '3'
+          $('#volumer').css 'background', "url('images/media-volume-3.png')"
+
+
       $('.about_link').bind 'click', ->
         if top.location.hash == '#אודות'
           top.location.hash = "#"
@@ -129,6 +93,7 @@
   </script>
 </head>
 <body>
+  <div id="volumer" data-level="3"></div>  
   <div class="container">
     <p>
       <br/>
@@ -189,8 +154,8 @@
         </p>
       </article>
     </section>
-    <audio controls="controls" autoplay="autoplay" loop="loop">
-      <source src="av/sea4.m4a" type="audio/mpeg" />
+    <audio controls="controls" autoplay="autoplay" loop="loop" id="moo">
+      <source src="av/sea.m4a" type="audio/mpeg" />
     </audio>
   </div>
 </body>
