@@ -38,7 +38,7 @@
       $('#volumer').css 'background', "url('images/media-volume-#{level}.png')"
 
     volumeOpacityEffect = ->
-      $("#volumer").fadeOut 1000, -> 
+      $("#volumer").fadeOut 2000, -> 
         $("#volumer").css 'opacity', '0'
         $("#volumer").show()
         calculateDistance = (elem, mouseX, mouseY) ->
@@ -105,15 +105,7 @@
     <div id="volumer" data-level="3"></div>  
     <p>
       <br/>
-      <div style="position: relative" class="about_link"> 
-        <video autoplay="autoplay" loop="loop"  height="60">
-          <source src="av/candle.mp4" type="video/mp4" />
-          <source src="av/candle.ogv" type="video/ogg" />
-          Your browser does not support the video tag.
-        </video>
-        <!-- <div style="position: absolute; left: 160px; top:50px; background-color: ; width: 30px; height: 10px"></div> -->
-      </div>
-      <!-- <img src="images/animatedcandle.gif" class="candle" /> -->
+      <img src="av/anim2.gif" class="about_link" />
       <h2 class="about_link">
         רועי ברלין
       </h2>

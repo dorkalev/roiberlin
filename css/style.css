@@ -2,6 +2,10 @@ html, body, div, p, span, a, h2 {
   text-align: center;
   direction: rtl;
 }
+
+body {  
+  background-color: rgb(243,243,255);
+}
 .container {
   margin: 0 auto;
   width: 340px;
@@ -23,6 +27,7 @@ img.mim:hover {
 
 .goSlide {
   display: none;
+  border: 3px solid darkgrey;
   cursor: pointer;
   position: absolute;
   right: 9px;
@@ -34,6 +39,9 @@ img.mim:hover {
   width: 20px;
   height: 20px;
   padding-bottom: 3px;
+}
+.goSlide:hover {
+  opacity: 0.6;
 }
 
 h2 {
