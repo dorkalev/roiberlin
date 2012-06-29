@@ -18,17 +18,27 @@
 	<title>רועי ברלין</title>
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <script type="text/coffeescript">
-    choof = ->
-      setTimeout ->
-        unless top.location.hash == '#אודות'
-          $('.mim').fadeOut ->
-            top.location.hash = "##{Math.round((Math.random()*100))%41 + 1}"
-            $(@).attr
-              src: "gallery/#{top.location.hash?.substr(1) | 1}.jpg"
-            .fadeIn choof
-      , 10015
+    showImage = ->
+      $('.mim').fadeOut ->
+        $(@).attr
+          src: "gallery/#{top.location.hash?.substr(1) | 1}.jpg"
+        .fadeIn slideShow
 
-    $ ->
+    slideShow = ->
+      setTimeout ->
+        if (top.location.hash?.substr(1)*1) > 0
+          top.location.hash = "##{Math.round((Math.random()*100))%37 + 1}"
+          showImage()
+      ,10015
+
+    volumeClick = ->
+      level = $('#volumer').attr('data-level') * 1 - 1
+      level = 3 if level == -1
+      $('#volumer').attr 'data-level', level
+      $('#moo')[0].volume = level/3
+      $('#volumer').css 'background', "url('images/media-volume-#{level}.png')"
+
+    volumeOpacityEffect = ->
       $("#volumer").fadeOut 1000, -> 
         $("#volumer").css 'opacity', '0'
         $("#volumer").show()
@@ -43,58 +53,48 @@
             op = 0
           $("#volumer").css
             opacity: op
-      $('#volumer').bind 'click', ->
-        if $('#volumer').attr('data-level') == '3'
-          $('#moo')[0].volume = 0.7
-          $('#volumer').attr 'data-level', '2'
-          $('#volumer').css 'background', "url('images/media-volume-2.png')"
-        else if $('#volumer').attr('data-level') == '2'
-          $('#moo')[0].volume = 0.5
-          $('#volumer').attr 'data-level', '1'
-          $('#volumer').css 'background', "url('images/media-volume-1.png')"
+    
+    setupGallery = ->
+      $('#gallery_box').append $("<img src='gallery/#{id}.jpg' data-img-id='#{id}' title='#{id}'>") for id in [1..38]
+    
+    router = ->
+      if top.location.hash == '#about'
+        $('.mim_w').fadeOut ->
+          $('#about_box').fadeIn()
+      else if top.location.hash == '#gallery'
+        $('.mim_w, section article').fadeOut ->
+          $('#gallery_box').fadeIn()
+      else
+        showImage()
+        $('section article').fadeOut ->
+          $('.mim_w').fadeIn()
 
-        else if $('#volumer').attr('data-level') == '1'
-          $('#moo')[0].volume = 0
-          $('#volumer').attr 'data-level', '0'
-          $('#volumer').css 'background', "url('images/media-volume-0.png')"
+    $ ->
+      router()
+      volumeOpacityEffect()
+      setupGallery()
 
-        else if $('#volumer').attr('data-level') == '0'
-          $('#moo')[0].volume = 1
-          $('#volumer').attr 'data-level', '3'
-          $('#volumer').css 'background', "url('images/media-volume-3.png')"
+      window.onhashchange = router
 
-
-      $('.about_link').bind 'click', ->
-        if top.location.hash == '#אודות'
-          top.location.hash = "#"
-          $('#about_box').fadeOut ->
-            $('.mim_w').fadeIn()
-        else
-          top.location.hash = "#אודות"
-          $('.mim_w').fadeOut ->
-            $('#about_box').fadeIn()
-
+      $('#volumer').bind 'click', volumeClick
+      $('#gallery_box').on 'click', 'img', ->
+        top.location.hash = "##{$(@).attr('data-img-id')}"
+      $('.about_link').bind 'click', -> top.location.hash = (if top.location.hash is "#about" then "" else "#about")
 
       $('a').popover()
-      if (top.location.hash?.substr 1)*1 > 0
-        $('.mim').attr
-          src: "gallery/#{top.location.hash?.substr 1}.jpg"
-      else
-        if top.location.hash == '#אודות'
-          $('.mim_w').hide()
-          $('#about_box').show()
-
-      $('.mim').ready ->
-        $('h2').fadeIn()
-        $('.q').fadeIn()
-        choof()
-
+      $('.mim').bind 'click', ->
+        top.location.hash = '#gallery'
+      $('h2').fadeIn()
 
   </script>
 </head>
 <body>
-  <div id="volumer" data-level="3"></div>  
+  <!--[if lte IE 7]>
+    This site is not supported on IE
+    <style>.container { display:none}</style>
+  <![endif]-->
   <div class="container">
+    <div id="volumer" data-level="3"></div>  
     <p>
       <br/>
       <div style="position: relative" class="about_link"> 
@@ -114,7 +114,7 @@
       </div>
     </p>
     <div class="menu">
-      <a href="#אודות" class="about_link">על אודות</a> |
+      <a href="javascript://" class="about_link">על אודות</a> |
       <a href="http://grooveshark.com/#!/playlist/Roi+Berlin/74934061" target="_blank" rel="tooltip" data-placement="right" title="המוסיקה" data-content="הרכבנו פלייליסט לפי שירים שרועי אהב. תוכלו לשמוע אותם דרך אתר grooveshark. נודה לכל מי שמכיר ורוצה לתרום שיר נוסף לארסנל.">המוסיקה</a> |
       <a href="http://benyehuda.org/reckendorf/" target="_blank" rel="tooltip" data-placement="right" title="הקוראן" data-content="רועי החל במלאכת הקלדת הקוראן לפי תרגומו של הרמן רקנדורף לטובת שוחרי האיסלאם בארץ.<br/>את מלאכתו סיימו חברי פרויקט בן-יהודה.">הקוראן</a> |
 
@@ -126,6 +126,7 @@
       <img src="gallery/11.jpg" class="mim" />
     </div>
     <section>
+      <article id="gallery_box"></article>
       <article id="about_box" class="about_link">
         <header>אודות רועי</header>
         <p>
