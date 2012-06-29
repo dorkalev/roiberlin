@@ -6,6 +6,9 @@ html, body, div, p, span, a, h2 {
   margin: 0 auto;
   width: 340px;
 }
+.mim_w {
+  position: relative;
+}
 img.mim {
   border-radius: 25px;
   width: 340px;
@@ -16,6 +19,21 @@ img.mim {
 img.mim:hover {
   cursor: pointer;
   opacity: 0.95;
+}
+
+.goSlide {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: 9px;
+  top: 17px;
+  font-size: 30px;
+  background-color: white;
+  opacity: .5;
+  border-radius: 25px;
+  width: 20px;
+  height: 20px;
+  padding-bottom: 3px;
 }
 
 h2 {

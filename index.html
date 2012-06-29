@@ -18,18 +18,17 @@
 	<title>רועי ברלין</title>
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <script type="text/coffeescript">
-    showImage = ->
+    showImage = (id) ->
       $('.mim').fadeOut ->
         $(@).attr
-          src: "gallery/#{top.location.hash?.substr(1)}.jpg"
+          src: "gallery/#{id}.jpg"
         .fadeIn()
     slideShow = ->
       setTimeout ->
-        if (top.location.hash == '#') || (top.location.hash?.substr(1)*1) > 0
-          top.location.hash = "##{Math.round(Math.random()*100)%37 + 1}"
-          showImage()
+        if (top.location.hash == '')  #|| (top.location.hash?.substr(1)*1) > 0
+          showImage "#{Math.round(Math.random()*100)%37 + 1}"
         slideShow()
-      , 10015
+      , 10100
 
     volumeClick = ->
       level = $('#volumer').attr('data-level') * 1 - 1
@@ -56,11 +55,19 @@
       if top.location.hash == '#about'
         $('.mim_w').fadeOut ->
           $('#about_box').fadeIn()
+
       else if top.location.hash == '#gallery'
         $('.mim_w, section article').slideUp 'slow', ->
           $('#gallery_box').fadeIn()
+
       else if (top.location.hash?.substr(1)*1) > 0
-        showImage()
+        $('.goSlide').fadeIn()
+        showImage top.location.hash?.substr(1)
+        $('section article').slideUp 'slow', ->
+          $('.mim_w').slideDown()
+
+      else if top.location.hash == ''
+        $('.goSlide').fadeOut()
         $('section article').slideUp 'slow', ->
           $('.mim_w').slideDown()
 
@@ -71,7 +78,8 @@
       slideShow()
 
       window.onhashchange = router
-
+      $('.goSlide').on 'click', ->
+        top.location.hash = '#'
       $('#volumer').bind 'click', volumeClick
       $('#gallery_box').on 'click', 'img', ->
         top.location.hash = "##{$(@).attr('data-img-id')}"
@@ -120,7 +128,8 @@
       <a href="http://aka.dorkalev.com/2010/06/blog-post_9554.html" target="_blank" rel="popover" data-placement="left" title="השלמה" data-content="קטע שכתב דור כלב במלאת שנה ללכתו של רועי">השלמה</a> 
     </div>
     <div class="mim_w">
-      <img src="gallery/11.jpg" class="mim" data-original-title="לחץ לגלריה" rel="tooltip" data-placement="right" />
+      <img src="gallery/11.jpg" class="mim" title="לחץ לגלריה" rel="tooltip" data-placement="right" />
+      <div class="goSlide" title="מצב מצגת - תמונות מתחלפות" rel="tooltip" data-placement="right">&laquo;</div>
     </div>
     <section>
       <article id="gallery_box"></article>
