@@ -79,7 +79,9 @@
 
       setInterval showRandomImage, 10100
       $('.rumi_quote').slideDown 300, ->
-        $('.menu').slideDown 300
+        $('.menu').slideDown 300, ->
+          $('.mim').fadeIn()
+
       $('.goSlide').on 'click', ->
         top.location.hash = ''
         showRandomImage()

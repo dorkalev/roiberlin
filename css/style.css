@@ -14,6 +14,7 @@ body {
   position: relative;
 }
 img.mim {
+  display: none;
   border-radius: 25px;
   width: 340px;
   margin-top: 10px;
