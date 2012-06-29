@@ -25,7 +25,7 @@
         .fadeIn()
     slideShow = ->
       setTimeout ->
-        if (top.location.hash = '#') || (top.location.hash?.substr(1)*1) > 0
+        if (top.location.hash == '#') || (top.location.hash?.substr(1)*1) > 0
           top.location.hash = "##{Math.round(Math.random()*100)%37 + 1}"
           showImage()
         slideShow()
@@ -156,5 +156,16 @@
       <source src="av/sea.m4a" type="audio/mpeg" />
     </audio>
   </div>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33044825-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </body>
 </html>
