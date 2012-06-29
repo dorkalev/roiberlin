@@ -11,7 +11,14 @@ img.mim {
   border-radius: 25px;
   width: 340px;
   margin-top: 10px;
+  box-shadow: 2px 2px 2px #888;
 }
+
+img.mim:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 h2 {
   margin: 7px 0;
 }
@@ -88,6 +95,6 @@ audio { display: none;}
 
 #gallery_box img:hover {
   opacity: 0.8;
-
+  cursor: pointer;
 
 }
