@@ -21,7 +21,7 @@
     showImage = ->
       $('.mim').fadeOut ->
         $(@).attr
-          src: "gallery/#{top.location.hash?.substr(1) | 1}.jpg"
+          src: "gallery/#{top.location.hash?.substr(1) | 11}.jpg"
         .fadeIn slideShow
 
     slideShow = ->
@@ -65,7 +65,7 @@
         $('.mim_w, section article').fadeOut ->
           $('#gallery_box').fadeIn()
       else
-        showImage()
+        slideShow()
         $('section article').fadeOut ->
           $('.mim_w').fadeIn()
 
