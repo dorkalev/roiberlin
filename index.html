@@ -27,7 +27,7 @@
         .fadeIn()
 
     showRandomImage = ->
-      showImage (Math.round(Math.random()*100)%43 + 1) if top.location.hash == ''
+      showImage (Math.round(Math.random()*100)%44 + 1) if top.location.hash == ''
 
 
     volumeClick = ->
@@ -49,7 +49,7 @@
             opacity: if (op = (0.6 - calculateDistance($element, e.pageX, e.pageY) / 500)) < 0 then 0 else op
     
     setupGallery = ->
-      $('#gallery_box').append $("<div class='one'><img src='gallery/#{id}.jpg' data-img-id='#{id}' title='#{id}'></div>") for id in [1..43]
+      $('#gallery_box').append $("<div class='one'><img src='gallery/#{id}.jpg' data-img-id='#{id}' title='#{id}'></div>") for id in [1..44]
     
     router = ->
       if top.location.hash == '#about'
